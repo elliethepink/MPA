@@ -1,0 +1,33 @@
+{
+    "Maya's Petplay Additions":"Дополнения для петплея от Maya",
+    "MPA Settings":"",
+
+    "Clicker":"Кликер",
+    "Enable auditory clicker": "",
+    "Phrases that trigger the click; Separate phrases with a comma":"Фразы, которые совершают клик; Разделяйте фразы с помощью запятой",
+    "Allow your own chat, emotes, & actions to trigger the clicker":"Разрешить вашим собственным сообщения в чате, эмоциям или действиям совершать клик",
+    "Who will be able to trigger the clicker":"Кто сможет вызывать срабатывание кликера",
+    "Public":"Публично",
+    "Friends":"Друзья",
+    "Whitelist":"Белый список",
+    "Lovers":"Любовники",
+    "Owners":"Владельцы",
+    "Clubowner":"Клубный владелец",
+    "Self":"Самостоятельно",
+
+    "Virtual Pet":"Виртуальный питомец",
+    "Become a virtual pet! Requiring: food, water, sleep, and affection":"Станьте виртуальным питомцем! Ваши потребности: еда, вода, сон и ласка",
+    "How many hours until you are completely out of food; 0 to disable":"Через сколько часов у вас полностью закончится еда; 0 для отключения",
+    "How many hours until you are completely out of water; 0 to disable":"Через сколько часов у вас полностью закончится вода; 0 для отключения",
+    "How many hours until you are completely out of sleep; 0 to disable":"Через сколько часов у вас полностью закончится сон; 0 для отключения",
+    "How many hours until you are completely out of affection; 0 to disable":"Через сколько часов у вас полностью закончится ласка; 0 для отключения",
+    "Pause stats from draining when logged out of the club":"Приостановить снижение показателей при выходе из клуба",
+    "Allow eating or drinking from items in your OWN hands":"Разрешить есть или пить из предметов в ваших СОБСТВЕННЫХ руках",
+
+    "Click Once":"Щелкнуть один раз",
+    "SourceCharacter presses the button PronounPossessive clicker.":"SourceCharacter нажимает на кнопку PronounPossessive кликера.",
+    "Click Twice":"Щелкнуть дважды",
+    "SourceCharacter presses the button PronounPossessive clicker twice.":"SourceCharacter нажимает на кнопку PronounPossessive кликера дважды.",
+    "Click Thrice":"Щелкнуть трижды",
+    "SourceCharacter presses the button PronounPossessive clicker three times.":"SourceCharacter нажимает на кнопку PronounPossessive кликера трижды."
+}
