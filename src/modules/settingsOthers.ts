@@ -138,7 +138,7 @@ export class SettingsOtherModule extends Module
                     // If hardcore is set, make sure its settings are set
                     if (Player.MPA[ModuleTitle.Profile].hardcore)
                     {
-                        (defaultSettings[ModuleTitle.Profile] as any)?.find((element: Setting) => element.name === "hardcore")?.onSet(Player);
+                        (defaultSettings[ModuleTitle.Profile]?.hardcore as any)?.onSet(Player);
                     }
 
                     // Catch Virtual Pet levels up to date if it was turned on / off
