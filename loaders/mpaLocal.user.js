@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name MPA Stable Loader
+// @name MPA Local Dev Server
 // @namespace https://www.bondageprojects.com/
 // @version 1.0.0
-// @description Maya's Petplay Additions Violentmonkey / Tampermonkey stable branch loader
+// @description Maya's Petplay Additions loader for local development changes
 // @author MayaTheFoxy
 // @match https://bondageprojects.elementfx.com/*
 // @match https://www.bondageprojects.elementfx.com/*
@@ -18,8 +18,8 @@ setTimeout(
         const script = document.createElement("script");
         script.setAttribute("language", "JavaScript");
         script.setAttribute("crossorigin", "anonymous");
-        script.setAttribute("src", `https://mayathefoxy.github.io/MPA/stableBundle.js?${Date.now()}`);
+        script.setAttribute("src", `http://localhost:8008/devBundle.js?${Date.now()}`);
         document.head.appendChild(script);
 	},
-	2000
+	1000
 );
