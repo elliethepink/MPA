@@ -1,7 +1,7 @@
 import { Module, ModuleTitle } from "./_module";
-import { UpdateElementValues } from "./settings";
+// import { UpdateElementValues } from "./settings";
 
-const PlayerP: (C?: Character) => MPARecord = (C: Character = Player) =>
+const _PlayerP: (C?: Character) => MPARecord = (C: Character = Player) =>
 {
     return C.MPA?.[ModuleTitle.Profile] ?? {};
 };
@@ -39,7 +39,7 @@ export class ProfileModule extends Module
     get Settings(): Setting[]
     {
         return [
-            {
+            /* {
                 name: "type",
                 type: "option",
                 active: () => false,
@@ -60,7 +60,7 @@ export class ProfileModule extends Module
                 label: "Phrases you speak when unable to be understood",
                 maxChars: 1024,
                 width: 400
-            } as TextSetting, {
+            } as TextSetting, */{
                 name: "hardcore",
                 type: "checkbox",
                 active: () => true,

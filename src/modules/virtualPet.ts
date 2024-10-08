@@ -217,6 +217,8 @@ export function LevelSync(pushToStorage: boolean = true, recordSync: boolean = t
     // Virtual pet is not enabled so do nothing
     if (!PlayerVP().enabled)
     {
+        PlayerVP().levels.lastUpdated = Date.now();
+        PlayerVP().levels.lastOnline = Date.now();
         return;
     }
 
@@ -528,9 +530,6 @@ export class VirtualPetModule extends Module
         HookFunction(this.Title, "ChatRoomMessage", 0, (args, next) =>
         {
             const data = args[0];
-            // const activityName = Array.isArray(data?.Dictionary) ?
-            //     (data.Dictionary.find(x => (x as ActivityNameDictionaryEntry).ActivityName) as ActivityNameDictionaryEntry)?.ActivityName :
-            //     undefined;
             const activityName = GetAttributeFromChatDictionary(data, "ActivityName");
             if (
                 !PlayerVP().enabled

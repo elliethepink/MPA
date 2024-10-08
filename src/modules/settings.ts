@@ -99,8 +99,6 @@ let allowResetTime: number = 0;
 
 DrawButton(1520, 720, 200, 80, "Cancel", "White");
 
-let vpEnabled: boolean;
-
 function DrawMenuOptions(menuOptions: string[]): void
 {
     for (let i = 0; i < menuOptions.length; i++)
@@ -656,10 +654,7 @@ function PreferenceMenuExit(): boolean | void
     {
         if (settingChar.MemberNumber === Player.MemberNumber)
         {
-            if (vpEnabled !== settingChar.MPA[ModuleTitle.VirtualPet].enabled && !vpEnabled)
-            {
-                settingChar.MPA[ModuleTitle.VirtualPet].levels.lastUpdated = Date.now();
-            }
+            LevelSync(false, false, false);
             SaveStorage(true);
         }
         else
@@ -689,8 +684,6 @@ function PreferenceMenuLoad(): void
 {
     // Shouldn't be needed but acts as failsafe and makes typescript happy
     if (!settingChar) { return; }
-
-    vpEnabled = settingChar.MPA[ModuleTitle.VirtualPet].enabled;
     settingsOpen = true;
 }
 

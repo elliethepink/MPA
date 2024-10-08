@@ -236,7 +236,7 @@ export class VirtualPetConditionsModule extends Module
                 name: "enabled",
                 type: "checkbox",
                 active: (C) => !!PlayerVP(C).enabled && !IsHardcoreOn(C),
-                value: true,
+                value: false,
                 label: "Recive conditions based on current level of your virtual pet stats"
             } as CheckboxSetting, {
                 name: "foodNOW",
@@ -256,13 +256,13 @@ export class VirtualPetConditionsModule extends Module
                 active: (C) => !!PlayerVP(C).enabled && !!PlayerVPC(C).enabled && !IsHardcoreOn(C),
                 value: true,
                 label: "Passout when exhausted"
-            } as CheckboxSetting, {
+            } as CheckboxSetting, /* {
                 name: "passoutLSCG",
                 type: "checkbox",
                 active: (C) => !!PlayerVP(C).enabled && !!PlayerVPC(C).enabled && !!PlayerVPC(C).passout && !!C.LSCG && !IsHardcoreOn(C) && false,
                 value: false,
                 label: "Use LSCG passout instead of MPA; Requires LSCG"
-            } as CheckboxSetting, {
+            } as CheckboxSetting, */ {
                 name: "affectionSkillBuffs",
                 type: "checkbox",
                 active: (C) => !!PlayerVP(C).enabled && !!PlayerVPC(C).enabled && !IsHardcoreOn(C),
