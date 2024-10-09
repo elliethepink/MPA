@@ -24,7 +24,7 @@ function ConditionIsEnforced(condition: string, vpStatNeedToBeEnabled?: VirtualP
     {
         return false;
     }
-    if (vpStatNeedToBeEnabled && (!PlayerVP().enabled || !(`${vpStatNeedToBeEnabled}Hours` in PlayerVP())))
+    if (vpStatNeedToBeEnabled && (!PlayerVP().enabled || PlayerVP()?.[`${vpStatNeedToBeEnabled}Hours`] === 0))
     {
         return false;
     }

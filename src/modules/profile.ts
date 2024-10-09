@@ -71,7 +71,7 @@ export class ProfileModule extends Module
                     GetRecord(ModuleTitle.Clicker, C).enabled = true;
                     GetRecord(ModuleTitle.Clicker, C).bcxVoice = true;
                     GetRecord(ModuleTitle.VirtualPet, C).enabled = true;
-                    GetRecord(ModuleTitle.VirtualPet, C).noHands = true;
+                    GetRecord(ModuleTitle.VirtualPet, C).noHands = false;
                     GetRecord(ModuleTitle.VirtualPetConditions, C).enabled = true;
                     GetRecord(ModuleTitle.VirtualPetConditions, C).foodNOW = true;
                     GetRecord(ModuleTitle.VirtualPetConditions, C).tint = true;

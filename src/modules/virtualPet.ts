@@ -435,7 +435,7 @@ export class VirtualPetModule extends Module
                 name: "noHands",
                 type: "checkbox",
                 active: (C) => !!PlayerVP(C).enabled && !IsHardcoreOn(C),
-                value: false,
+                value: true,
                 label: "Allow eating or drinking from items in your OWN hands"
             } as CheckboxSetting, {
                 name: "masochist",
