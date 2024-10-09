@@ -14,6 +14,7 @@ export function Bed(): void
             }
             const hairColor = InventoryGet(Player, "HairFront")?.Color as ItemColor;
             InventoryWear(Player, "PetBed", "ItemDevices", [hairColor[0], "Default", hairColor[hairColor.length - 1]]);
+            ChatRoomCharacterItemUpdate(Player, "ItemDevices");
             SendAction(`${Player.Nickname || Player.Name} crawls into their bed.`);
         }
     }, {
