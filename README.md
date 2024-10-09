@@ -1,6 +1,6 @@
 # Maya's Petplay Additions
 
-### It is recommended to use the stable branch unless you want to opt in for experimental / buggy features on the dev branch
+### It is recommended to use the stable branch unless you want to opt in for experimental / buggy features on the dev branch.
 ### MPA will probably be integrated into FUSAM in the future. But I do not feel like the project is ready yet.
 
 ### Violentmonkey / TamperMonkey install:
@@ -17,5 +17,5 @@ javascript:(()=>{fetch("https://mayathefoxy.github.io/MPA/stableBundle.js").then
 ```
 **Dev:**
 ```
-javascript:(()=>{fetch("https://mayathefoxy.github.io/MPA/stableBundle.js").then(r=>r.text()).then(r=>eval(r));})();
+javascript:(()=>{fetch("https://mayathefoxy.github.io/MPA/devBundle.js").then(r=>r.text()).then(r=>eval(r));})();
 ```
