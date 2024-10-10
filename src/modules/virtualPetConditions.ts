@@ -24,11 +24,7 @@ function ConditionIsEnforced(condition: string, vpStatNeedToBeEnabled?: VirtualP
     {
         return false;
     }
-    if (vpStatNeedToBeEnabled && (!PlayerVP().enabled || PlayerVP()?.[`${vpStatNeedToBeEnabled}Hours`] === 0))
-    {
-        return false;
-    }
-    return true;
+    return (!vpStatNeedToBeEnabled || (PlayerVP().enabled && PlayerVP()?.[`${vpStatNeedToBeEnabled}Hours`] !== 0))
 };
 
 /** [Skill, postive or negative corrlation] */
