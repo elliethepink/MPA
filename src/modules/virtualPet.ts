@@ -25,7 +25,7 @@ const BED_PERFECT = ["PetBed", "Crib"];
 const BED_NORMAL = ["LowCage", "Kennel", "Bed", "MedicalBed"];
 const BED_BAD = ["FuturisticCrate", "DollBox"];
 
-const AFFECTION_ACTIVITY_LOVE = ["Pet", "TakeCare", "LSCG_Nuzzle", "Caress", "LSCG_Hug"];
+const AFFECTION_ACTIVITY_LOVE = ["Pet", "TakeCare", "LSCG_Nuzzle", "Caress", "LSCG_Hug", "Scratch"];
 const AFFECTION_ACTIVITY_LIKE = ["Kiss", "MassageHands", "Lick", "Nibble", "Cuddle", "Grope"];
 const AFFECTION_ACTIVITY_MASO = ["Spank", "Slap", "Bite", "Pinch", "Pull", "ShockItem", "SpankItem"];
 const AFFECTION_LOVE_BASE = 0.05;
