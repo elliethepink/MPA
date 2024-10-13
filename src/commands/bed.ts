@@ -15,7 +15,11 @@ export function Bed(): void
             const hairColor = InventoryGet(Player, "HairFront")?.Color as ItemColor;
             InventoryWear(Player, "PetBed", "ItemDevices", [hairColor[0], "Default", hairColor[hairColor.length - 1]]);
             ChatRoomCharacterItemUpdate(Player, "ItemDevices");
-            SendAction(`${Player.Nickname || Player.Name} crawls into their bed.`);
+            SendAction(
+                "SourceCharacter crawls into PronounPossessive bed.",
+                undefined,
+                [{ SourceCharacter: Player.MemberNumber } as SourceCharacterDictionaryEntry]
+            );
         }
     }, {
         Tag: "blanket",
@@ -39,11 +43,19 @@ export function Bed(): void
             ChatRoomCharacterUpdate(Player);
             if (bed.Property.TypeRecord.typed === 1)
             {
-                SendAction(`${Player.Nickname || Player.Name} pulls their blanket over theirself`);
+                SendAction(
+                    "SourceCharacter pulls a blanket over PronounObject.",
+                    undefined,
+                    [{ SourceCharacter: Player.MemberNumber } as SourceCharacterDictionaryEntry]
+                );
             }
             else
             {
-                SendAction(`${Player.Nickname || Player.Name} removes their blanket over theirself`);
+                SendAction(
+                    "SourceCharacter removes the blanket from on top of PronounObject.",
+                    undefined,
+                    [{ SourceCharacter: Player.MemberNumber } as SourceCharacterDictionaryEntry]
+                );
             }
         }
     }]);
