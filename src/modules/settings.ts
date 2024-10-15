@@ -191,8 +191,9 @@ function DrawSubMenuOptions(subMenu: ModuleTitle): void
     // Shouldn't be needed but acts as failsafe and makes typescript happy
     if (!settingChar) { return; }
 
+    // Settings have to be displayable and have a value exist in the stored settings
     const settingsToDisplay = Object.entries(defaultSettings[subMenu] ?? {})
-        .filter(([_key, setting]) => IsDisplaySetting(setting));
+        .filter(([key, setting]) => IsDisplaySetting(setting) && (key in (settingChar?.MPA[subMenu] ?? {})));
 
     // Next and previous option buttons
     if (maxPages !== 1)
@@ -301,8 +302,9 @@ function GetClickedOption(subMenu: ModuleTitle): void
     // Shouldn't be needed but acts as failsafe and makes typescript happy
     if (!settingChar) { return; }
 
+    // Settings have to be displayable and have a value exist in the stored settings
     const settingsToDisplay = Object.entries(defaultSettings[subMenu] ?? {})
-        .filter(([_key, setting]) => IsDisplaySetting(setting));
+        .filter(([key, setting]) => IsDisplaySetting(setting) && (key in (settingChar?.MPA[subMenu] ?? {})));
 
     // Loop through all the options and check if the click occured in the type's corresponding click zone
     settingsToDisplay.slice((currentPage - 1) * OPTION_PER_PAGE, currentPage * OPTION_PER_PAGE).forEach((val, i) =>
@@ -467,8 +469,9 @@ export function PreferenceMenuClick(): void
     {
         currentMenu = GetClickedMenu(MENU_CATEGORIES());
         currentPage = 1;
-        maxPages = Math.ceil(Object.values(defaultSettings[currentMenu ?? ""] ?? {})
-            .filter((setting) => IsDisplaySetting(setting)).length / OPTION_PER_PAGE);
+        maxPages = Math.ceil(Object.entries(defaultSettings[currentMenu ?? ""] ?? {})
+            .filter(([key, setting]) => IsDisplaySetting(setting) && (key in (settingChar?.MPA[currentMenu ?? ""] ?? {})))
+            .length / OPTION_PER_PAGE);
         CreateHTMLElements(currentMenu);
     }
     if (currentMenu === "RESET_Settings")
@@ -481,8 +484,9 @@ export function PreferenceMenuClick(): void
     {
         // Next and previous buttons
         // Only check if setting page needs it
-        if (Object.values(defaultSettings[currentMenu] ?? {})
-            .filter((setting) => IsDisplaySetting(setting)).length > OPTION_PER_PAGE
+        if (Object.entries(defaultSettings[currentMenu ?? ""] ?? {})
+            .filter(([key, setting]) => IsDisplaySetting(setting) && (key in (settingChar?.MPA[currentMenu ?? ""] ?? {})))
+            .length > OPTION_PER_PAGE
         )
         {
             if (MouseIn(...NEXT_BUTTON_POS) && currentPage < maxPages)
