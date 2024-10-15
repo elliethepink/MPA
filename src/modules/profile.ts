@@ -123,7 +123,7 @@ export class ProfileModule extends Module
             // Are we gagging or deafening?
             // Not deafening so skip
             if (
-                (C ? C.MemberNumber !== Player.MemberNumber : false)
+                C?.IsGagged()
                 || !Player.IsDeaf()
                 || PlayerP().petHearing === false
             )
