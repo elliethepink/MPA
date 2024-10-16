@@ -30,5 +30,6 @@ jobs:
       with:
         branch: gh-pages
         folder: dist
+        clean: false # Preserve existing files, only replace if named the same
         git-config-name: github-actions[bot]
         git-config-email: github-actions[bot]@users.noreply.github.com
