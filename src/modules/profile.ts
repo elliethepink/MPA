@@ -38,15 +38,15 @@ export const PET_HEARING = Object.freeze({
         "lap", "speak", "hush", "quiet", "hush", "all fours", "all-fours"],
     Human: [],
     Custom: [],
-    Bunny: ["bun", "bunny", "carrot", "hop", "jump"],
-    Cat: ["cat", "kitty", "kitten", "catnip"],
+    Bunny: ["bun", "bunny", "carrot", "hop", "jump", "hump", "ear", "ears"],
+    Cat: ["cat", "kitty", "kitten", "catnip", "knead", "scratch", "yarn", "milk"],
     Cow: ["milk", "milking", "utter", "breast", "grass", "moo"],
-    Dog: ["cage", "kennel", "pup", "puppy", "dog", "doggy", "bone", "fetch"],
+    Dog: ["cage", "kennel", "pup", "puppy", "dog", "doggy", "bone", "fetch", "heel", "roll", "over", "bark"],
     Fox: ["trap", "bun", "bunny", "bone", "fox", "foxy"],
-    Mouse: ["mouse"],
+    Mouse: ["mouse", "ear", "ears", "trap", "wire", "wheel", "cheese", "nibble", "cat", "kitty", "kitten"],
     Pony: ["pony", "mare", "stallion", "bridle", "hoof", "hooves", "trot", "stall", "hay", "woah",
-        "stomp", "calm", "easy", "slow"],
-    Wolf: ["bone", "wolf"]
+        "stomp", "calm", "easy", "slow", "cart", "bay", "run", "race"],
+    Wolf: ["bone", "wolf", "dog", "pup", "puppy", "heel"]
 });
 
 export class ProfileModule extends Module
