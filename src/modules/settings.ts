@@ -33,7 +33,14 @@ const BUTTON_GAP = 20;
 const BUTTON_TEXT_PADDING = 20;
 
 // Player only buttons
-const RESET_POSITION = [100, 700, 350, 75] as const;
+const WIKI_POSITION = [100, 605, 350, 75] as const;
+const WIKI_LINK = "https://github.com/MayaTheFoxy/MPA/wiki";
+const RESET_POSITION = [
+    WIKI_POSITION[0],
+    WIKI_POSITION[1] + WIKI_POSITION[3] + BUTTON_GAP,
+    WIKI_POSITION[2],
+    WIKI_POSITION[3]
+] as const;
 const ALERT_POSITION = [
     RESET_POSITION[0],
     RESET_POSITION[1] - RESET_POSITION[3],
@@ -432,6 +439,11 @@ export function PreferenceMenuClick(): void
 
     if (settingChar?.MemberNumber === Player.MemberNumber && currentMenu === null)
     {
+        if (MouseIn(...WIKI_POSITION))
+        {
+            window.open(WIKI_LINK, '_blank')?.focus();
+            return;
+        }
         if (MouseIn(...RESET_POSITION))
         {
             currentMenu = "RESET_Settings";
@@ -597,7 +609,7 @@ export function PreferenceMenuRun(): void
     MainCanvas.textAlign = "center";
     DrawText(`${LocalizedText("Maya's Petplay Additions")}${currentMenu ? ` - ${settingChar?.Nickname || settingChar?.Name}'s ${LocalizedText(MENU_TITLES[currentMenu] ?? currentMenu)}` : ""}`, 1000, 125, "Black", "Gray");
 
-    // Reset, import and export but only while Player
+    // Wiki, Reset, import and export but only while Player
     if (settingChar?.MemberNumber === Player.MemberNumber && currentMenu === null)
     {
         if (showSettingsAlert >= Date.now())
@@ -611,6 +623,13 @@ export function PreferenceMenuRun(): void
             );
         }
         MainCanvas.textAlign = "center";
+        DrawButton(
+            ...WIKI_POSITION,
+            LocalizedText("Wiki"),
+            "#ffffff",
+            "",
+            LocalizedText("Open the MPA wiki in a new tab")
+        );
         DrawButton(
             ...RESET_POSITION,
             LocalizedText("RESET"),
