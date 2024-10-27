@@ -1,3 +1,7 @@
+# 0.4.3
+ - Pet hearing based on profile
+ - Wiki and link to wiki from MPA settings page
+
 # 0.4.2
  - Hotfix for syncing virtual pet levels when turning on in settings
  - Added repo to BC SDK

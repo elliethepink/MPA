@@ -5,53 +5,55 @@ const WEBPACK_DEV_SERVER_PORT = 8008;
 
 const DIST_DIR = path.join(__dirname, "dist");
 
-module.exports =  {
-	devServer: {
-		hot: false,
-		open: false,
-		client: false,
-		allowedHosts: "all",
-		headers: {
-			"Access-Control-Allow-Origin": "*",
-			"Access-Control-Allow-Credentials": "true",
-			"Access-Control-Allow-Methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-			"Access-Control-Expose-Headers": "Content-Length",
-			"Access-Control-Allow-Headers": "Accept, Authorization, Content-Type, X-Requested-With, Range",
+module.exports = (env) => {
+	return {
+		devServer: {
+			hot: false,
+			open: false,
+			client: false,
+			allowedHosts: "all",
+			headers: {
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Credentials": "true",
+				"Access-Control-Allow-Methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+				"Access-Control-Expose-Headers": "Content-Length",
+				"Access-Control-Allow-Headers": "Accept, Authorization, Content-Type, X-Requested-With, Range",
+			},
+			port: WEBPACK_DEV_SERVER_PORT,
+			compress: true,
+			devMiddleware: {
+				writeToDisk: true,
+			},
 		},
-		port: WEBPACK_DEV_SERVER_PORT,
-		compress: true,
-		devMiddleware: {
-			writeToDisk: true,
-		},
-	},
-	devtool: false ? "source-map" : "inline-source-map",
-	entry: "./src/index.ts",
-	mode: "development",
-	module: {
-		rules: [{
-			test: /\.tsx?$/i,
-			exclude: /node_modules/,
-			use: [{
-				loader: "ts-loader",
-				options: {
-					configFile: "tsconfig.json",
-				},
+		devtool: false ? "source-map" : "inline-source-map",
+		entry: "./src/index.ts",
+		mode: "development",
+		module: {
+			rules: [{
+				test: /\.tsx?$/i,
+				exclude: /node_modules/,
+				use: [{
+					loader: "ts-loader",
+					options: {
+						configFile: "tsconfig.json",
+					},
+				}],
 			}],
-		}],
-	},
-	optimization: {
-		minimize: true,
-    	minimizer: [new TerserPlugin()],
-	},
-	output: {
-		path: DIST_DIR,
-		filename: `devBundle.js`,
-	},
-	plugins: [
+		},
+		optimization: {
+			minimize: true,
+			minimizer: [new TerserPlugin()],
+		},
+		output: {
+			path: DIST_DIR,
+			filename: `${env.stable == "true" ? "stable" : "dev"}Bundle.js`,
+		},
+		plugins: [
 
-	],
-	resolve: {
-		extensions: [".ts", ".tsx", ".js"],
-	},
-	performance: false
-}
+		],
+		resolve: {
+			extensions: [".ts", ".tsx", ".js"],
+		},
+		performance: false
+	};
+};

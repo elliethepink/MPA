@@ -1,7 +1,7 @@
 {
 	"name": "mpa",
 	"description": "",
-	"version": "0.4.2",
+	"version": "0.4.3",
 	"author": "Maya",
 	"license": "MIT",
 	"repository": {
@@ -9,7 +9,9 @@
 		"url": "https://github.com/MayaTheFoxy/MPA"
 	},
 	"scripts": {
-		"build": "webpack serve --progress",
+		"serve": "npx webpack serve --progress",
+		"stable": "npx webpack --env stable=true",
+		"dev": "npx webpack --env stable=false",
 		"lint": "eslint ./src",
 		"lint-fix": "eslint ./src --fix"
 	},

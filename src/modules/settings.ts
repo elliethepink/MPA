@@ -33,7 +33,14 @@ const BUTTON_GAP = 20;
 const BUTTON_TEXT_PADDING = 20;
 
 // Player only buttons
-const RESET_POSITION = [100, 700, 350, 75] as const;
+const WIKI_POSITION = [100, 605, 350, 75] as const;
+const WIKI_LINK = "https://github.com/MayaTheFoxy/MPA/wiki";
+const RESET_POSITION = [
+    WIKI_POSITION[0],
+    WIKI_POSITION[1] + WIKI_POSITION[3] + BUTTON_GAP,
+    WIKI_POSITION[2],
+    WIKI_POSITION[3]
+] as const;
 const ALERT_POSITION = [
     RESET_POSITION[0],
     RESET_POSITION[1] - RESET_POSITION[3],
@@ -191,8 +198,9 @@ function DrawSubMenuOptions(subMenu: ModuleTitle): void
     // Shouldn't be needed but acts as failsafe and makes typescript happy
     if (!settingChar) { return; }
 
+    // Settings have to be displayable and have a value exist in the stored settings
     const settingsToDisplay = Object.entries(defaultSettings[subMenu] ?? {})
-        .filter(([_key, setting]) => IsDisplaySetting(setting));
+        .filter(([key, setting]) => IsDisplaySetting(setting) && (key in (settingChar?.MPA[subMenu] ?? {})));
 
     // Next and previous option buttons
     if (maxPages !== 1)
@@ -301,8 +309,9 @@ function GetClickedOption(subMenu: ModuleTitle): void
     // Shouldn't be needed but acts as failsafe and makes typescript happy
     if (!settingChar) { return; }
 
+    // Settings have to be displayable and have a value exist in the stored settings
     const settingsToDisplay = Object.entries(defaultSettings[subMenu] ?? {})
-        .filter(([_key, setting]) => IsDisplaySetting(setting));
+        .filter(([key, setting]) => IsDisplaySetting(setting) && (key in (settingChar?.MPA[subMenu] ?? {})));
 
     // Loop through all the options and check if the click occured in the type's corresponding click zone
     settingsToDisplay.slice((currentPage - 1) * OPTION_PER_PAGE, currentPage * OPTION_PER_PAGE).forEach((val, i) =>
@@ -430,6 +439,11 @@ export function PreferenceMenuClick(): void
 
     if (settingChar?.MemberNumber === Player.MemberNumber && currentMenu === null)
     {
+        if (MouseIn(...WIKI_POSITION))
+        {
+            window.open(WIKI_LINK, "_blank")?.focus();
+            return;
+        }
         if (MouseIn(...RESET_POSITION))
         {
             currentMenu = "RESET_Settings";
@@ -467,8 +481,9 @@ export function PreferenceMenuClick(): void
     {
         currentMenu = GetClickedMenu(MENU_CATEGORIES());
         currentPage = 1;
-        maxPages = Math.ceil(Object.values(defaultSettings[currentMenu ?? ""] ?? {})
-            .filter((setting) => IsDisplaySetting(setting)).length / OPTION_PER_PAGE);
+        maxPages = Math.ceil(Object.entries(defaultSettings[currentMenu ?? ""] ?? {})
+            .filter(([key, setting]) => IsDisplaySetting(setting) && (key in (settingChar?.MPA[currentMenu ?? ""] ?? {})))
+            .length / OPTION_PER_PAGE);
         CreateHTMLElements(currentMenu);
     }
     if (currentMenu === "RESET_Settings")
@@ -481,8 +496,9 @@ export function PreferenceMenuClick(): void
     {
         // Next and previous buttons
         // Only check if setting page needs it
-        if (Object.values(defaultSettings[currentMenu] ?? {})
-            .filter((setting) => IsDisplaySetting(setting)).length > OPTION_PER_PAGE
+        if (Object.entries(defaultSettings[currentMenu ?? ""] ?? {})
+            .filter(([key, setting]) => IsDisplaySetting(setting) && (key in (settingChar?.MPA[currentMenu ?? ""] ?? {})))
+            .length > OPTION_PER_PAGE
         )
         {
             if (MouseIn(...NEXT_BUTTON_POS) && currentPage < maxPages)
@@ -593,7 +609,7 @@ export function PreferenceMenuRun(): void
     MainCanvas.textAlign = "center";
     DrawText(`${LocalizedText("Maya's Petplay Additions")}${currentMenu ? ` - ${settingChar?.Nickname || settingChar?.Name}'s ${LocalizedText(MENU_TITLES[currentMenu] ?? currentMenu)}` : ""}`, 1000, 125, "Black", "Gray");
 
-    // Reset, import and export but only while Player
+    // Wiki, Reset, import and export but only while Player
     if (settingChar?.MemberNumber === Player.MemberNumber && currentMenu === null)
     {
         if (showSettingsAlert >= Date.now())
@@ -607,6 +623,13 @@ export function PreferenceMenuRun(): void
             );
         }
         MainCanvas.textAlign = "center";
+        DrawButton(
+            ...WIKI_POSITION,
+            LocalizedText("Wiki"),
+            "#ffffff",
+            "",
+            LocalizedText("Open the MPA wiki in a new tab")
+        );
         DrawButton(
             ...RESET_POSITION,
             LocalizedText("RESET"),
