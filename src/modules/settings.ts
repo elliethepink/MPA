@@ -441,7 +441,7 @@ export function PreferenceMenuClick(): void
     {
         if (MouseIn(...WIKI_POSITION))
         {
-            window.open(WIKI_LINK, '_blank')?.focus();
+            window.open(WIKI_LINK, "_blank")?.focus();
             return;
         }
         if (MouseIn(...RESET_POSITION))
